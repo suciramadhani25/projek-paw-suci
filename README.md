@@ -30,3 +30,8 @@ Aplikasi web sederhana untuk membantu mahasiswa mengelola tugas kuliah.
 - Vite digunakan sebagai development server dan bundler.
 - TypeScript digunakan untuk membuat kode JavaScript dengan sistem tipe.
 - Environment variables digunakan untuk menyimpan konfigurasi aplikasi.
+
+## Penyimpanan Data
+
+Aplikasi menggunakan Local Storage browser untuk menyimpan daftar tugas.
+Data tetap tersedia ketika halaman di-refresh pada browser yang sama.
