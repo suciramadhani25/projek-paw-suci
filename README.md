@@ -33,5 +33,5 @@ Aplikasi web sederhana untuk membantu mahasiswa mengelola tugas kuliah.
 
 ## Penyimpanan Data
 
-Aplikasi menggunakan Local Storage browser untuk menyimpan daftar tugas.
+Aplikasi menggunakan Local Storage browser agar data tugas tetap tersimpan setelah halaman di-refresh.
 Data tetap tersedia ketika halaman di-refresh pada browser yang sama.
