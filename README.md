@@ -21,3 +21,12 @@ Aplikasi web sederhana untuk membantu mahasiswa mengelola tugas kuliah.
 1. Install dependency dengan npm install.
 2. Jalankan aplikasi dengan npm run dev.
 3. Buka alamat localhost yang muncul di terminal.
+
+## Informasi Pengembangan
+
+- Git digunakan untuk mengelola versi kode.
+- GitHub digunakan untuk menyimpan repository secara online.
+- npm digunakan untuk mengelola package dan dependency.
+- Vite digunakan sebagai development server dan bundler.
+- TypeScript digunakan untuk membuat kode JavaScript dengan sistem tipe.
+- Environment variables digunakan untuk menyimpan konfigurasi aplikasi.
