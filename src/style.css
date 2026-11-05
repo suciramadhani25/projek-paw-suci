@@ -1,0 +1,163 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f3f5fa;
+    color: #263247;
+    line-height: 1.6;
+}
+
+/* Header */
+header {
+    background: linear-gradient(135deg, #263b59, #49678c);
+    color: white;
+    text-align: center;
+    padding: 45px 20px;
+}
+
+header h1 {
+    font-size: 32px;
+    margin-bottom: 8px;
+}
+
+header p {
+    margin-bottom: 15px;
+    color: #e4eaf2;
+}
+
+header a {
+    display: inline-block;
+    color: white;
+    text-decoration: none;
+    border: 1px solid white;
+    padding: 8px 18px;
+    border-radius: 8px;
+    transition: 0.2s;
+}
+
+header a:hover {
+    background: white;
+    color: #263b59;
+}
+
+/* Konten utama */
+main {
+    width: 90%;
+    max-width: 850px;
+    margin: 35px auto;
+}
+
+/* Kartu */
+section {
+    background: white;
+    padding: 28px;
+    margin-bottom: 25px;
+    border-radius: 14px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+section h2 {
+    font-size: 22px;
+    margin-bottom: 20px;
+    color: #263b59;
+}
+
+/* Form */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+input {
+    width: 100%;
+    padding: 13px 15px;
+    border: 1px solid #dce2eb;
+    border-radius: 8px;
+    font-size: 15px;
+    outline: none;
+}
+
+input:focus {
+    border-color: #49678c;
+    box-shadow: 0 0 0 3px rgba(73, 103, 140, 0.12);
+}
+
+/* Tombol */
+button {
+    padding: 11px 16px;
+    border: none;
+    border-radius: 8px;
+    background: #344f73;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+    margin: 4px 4px 4px 0;
+    transition: 0.2s;
+}
+
+button:hover {
+    background: #203752;
+    transform: translateY(-1px);
+}
+
+/* Kartu tugas */
+.task-card {
+    padding: 18px;
+    margin-bottom: 15px;
+    border: 1px solid #e2e7ef;
+    border-left: 5px solid #49678c;
+    border-radius: 10px;
+    background: #fbfcfe;
+}
+
+.task-card h3 {
+    color: #263b59;
+    margin-bottom: 7px;
+}
+
+.task-card p {
+    color: #667085;
+    font-size: 14px;
+}
+
+.task-card button[data-action="complete"] {
+    background: #25845c;
+}
+
+.task-card button[data-action="edit"] {
+    background: #d18a2e;
+}
+
+.task-card button[data-action="delete"] {
+    background: #c84c4c;
+}
+
+.task-card button:hover {
+    opacity: 0.85;
+}
+
+/* Tampilan HP */
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 25px;
+    }
+
+    main {
+        width: 94%;
+        margin: 20px auto;
+    }
+
+    section {
+        padding: 20px;
+    }
+
+    .task-card button {
+        margin-top: 8px;
+    }
+}
