@@ -1,0 +1,236 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dokumentasi Teknologi</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #F6EBDD;
+            color: #4A2E22;
+            line-height: 1.7;
+        }
+
+        header {
+            background: #4A2E22;
+            color: white;
+            padding: 25px 8%;
+        }
+
+        header h1 {
+            margin-bottom: 8px;
+        }
+
+        nav {
+            margin-top: 15px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-right: 20px;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 35px auto;
+            padding: 0 20px;
+        }
+
+        .intro {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+        }
+
+        .materi {
+            background: white;
+            padding: 22px;
+            border-radius: 12px;
+            margin-bottom: 18px;
+            border-left: 5px solid #A87945;
+        }
+
+        .materi h2 {
+            color: #75472F;
+            margin-bottom: 8px;
+        }
+
+        .materi p {
+            text-align: justify;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            background: #4A2E22;
+            color: white;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 600px) {
+            header {
+                padding: 20px;
+            }
+
+            nav a {
+                display: inline-block;
+                margin: 5px 12px 5px 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Dokumentasi Teknologi</h1>
+    <p>Mengenal teknologi yang digunakan dalam pengembangan Task Manager Mahasiswa.</p>
+
+    <nav>
+        <a href="index.html">Task Manager</a>
+        <a href="profil.html">Profil Website</a>
+        <a href="dokumentasi.html">Dokumentasi</a>
+    </nav>
+</header>
+
+<main class="container">
+
+    <section class="intro">
+        <h2>Tentang Dokumentasi</h2>
+        <p>
+            Halaman ini berisi penjelasan mengenai teknologi dan konsep
+            yang digunakan dalam pengembangan aplikasi Task Manager Mahasiswa.
+            Teknologi tersebut membantu proses pengelolaan kode, pengembangan,
+            pengujian, dan pembuatan aplikasi web.
+        </p>
+    </section>
+
+    <section class="materi">
+        <h2>1. Git</h2>
+        <p>
+            Git adalah sistem version control yang digunakan untuk mencatat
+            perubahan kode program. Dengan Git, pengembang dapat melihat
+            riwayat perubahan, membuat branch, melakukan merge, dan kembali
+            ke versi sebelumnya jika diperlukan.
+        </p>
+    </section>
+
+    <section class="materi">
+        <h2>2. npm</h2>
+        <p>
+            npm (Node Package Manager) adalah alat untuk mengelola package
+            atau library JavaScript. npm digunakan untuk memasang dependency
+            dan menjalankan perintah pengembangan seperti npm install,
+            npm run dev, dan npm run build.
+        </p>
+    </section>
+
+    <section class="materi">
+        <h2>3. TypeScript</h2>
+        <p>
+            TypeScript adalah bahasa pemrograman yang dikembangkan dari
+            JavaScript dengan dukungan tipe data. TypeScript membantu
+            pengembang menemukan kesalahan tipe data lebih awal dan
+            membuat kode lebih terstruktur.
+        </p>
+    </section>
+
+    <section class="materi">
+        <h2>4. Vite</h2>
+        <p>
+            Vite adalah build tool yang membantu proses pengembangan aplikasi
+            web. Vite menyediakan development server untuk menjalankan aplikasi
+            secara lokal serta proses build untuk menghasilkan file siap produksi.
+        </p>
+    </section>
+
+    <section class="materi">
+        <h2>5. Environment Variable</h2>
+        <p>
+            Environment variable adalah variabel konfigurasi yang nilainya
+            dapat disesuaikan berdasarkan lingkungan aplikasi. Dalam project
+            Vite, variabel yang dapat diakses dari kode frontend menggunakan
+            awalan VITE_. File .env digunakan untuk menyimpan konfigurasi lokal,
+            sedangkan .env.example menjadi contoh variabel yang dibutuhkan.
+        </p>
+    </section>
+
+    <section class="materi">
+        <h2>6. Compiler</h2>
+        <p>
+            Compiler adalah program yang menerjemahkan kode sumber menjadi
+            bentuk lain yang dapat diproses atau dijalankan. Pada project ini,
+            TypeScript menggunakan compiler untuk memeriksa tipe data dan
+            menghasilkan JavaScript.
+        </p>
+    </section>
+
+    <section class="materi">
+        <h2>7. Transpiler</h2>
+        <p>
+            Transpiler adalah alat yang mengubah kode dari satu bahasa atau
+            versi bahasa pemrograman ke bentuk lain yang setara. Contohnya,
+            TypeScript ditranspilasi menjadi JavaScript agar dapat dijalankan
+            oleh browser.
+        </p>
+    </section>
+
+    <section class="materi">
+        <h2>8. Bundler</h2>
+        <p>
+            Bundler adalah alat yang menggabungkan berbagai file dan module
+            aplikasi menjadi kumpulan file yang siap digunakan. Dalam proses
+            build, Vite menggunakan Rollup untuk melakukan bundling pada
+            aplikasi produksi.
+        </p>
+    </section>
+
+    <section class="materi">
+        <h2>9. Dependencies</h2>
+        <p>
+            Dependencies adalah package yang dibutuhkan aplikasi agar dapat
+            berjalan. Package tersebut tercatat dalam bagian dependencies
+            pada file package.json dan dipasang menggunakan npm.
+        </p>
+    </section>
+
+    <section class="materi">
+        <h2>10. DevDependencies</h2>
+        <p>
+            DevDependencies adalah package yang digunakan untuk membantu
+            proses pengembangan, seperti TypeScript dan Vite. Package ini
+            tercatat pada bagian devDependencies di package.json.
+        </p>
+    </section>
+
+    <section class="materi">
+        <h2>11. Semantic Versioning (Semver)</h2>
+        <p>
+            Semantic Versioning adalah aturan penomoran versi package dengan
+            format MAJOR.MINOR.PATCH. MAJOR menunjukkan perubahan besar yang
+            tidak kompatibel, MINOR menunjukkan penambahan fitur yang tetap
+            kompatibel, sedangkan PATCH menunjukkan perbaikan bug.
+            Contohnya adalah versi 1.2.3.
+        </p>
+    </section>
+
+</main>
+
+<footer>
+    <p>Dokumentasi Teknologi | Task Manager Mahasiswa</p>
+</footer>
+
+</body>
+</html>
