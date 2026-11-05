@@ -1,199 +1,229 @@
-const namaAplikasi = import.meta.env.VITE_APP_NAME;
-const versiAplikasi = import.meta.env.VITE_APP_VERSION;
 
-document.title = `${namaAplikasi} - v${versiAplikasi}`;
+import './style.css'
 
-const judulAplikasi = document.querySelector("header h1");
+type TaskStatus = 'Belum Selesai' | 'Selesai'
 
-if (judulAplikasi) {
-    judulAplikasi.textContent = namaAplikasi;
-}
 interface Task {
-    id: number;
-    title: string;
-    deadline: string;
-    completed: boolean;
+  id: number
+  title: string
+  status: TaskStatus
+  deadline: string
+  createdAt: string
 }
 
-type TaskStatus = "Belum Selesai" | "Selesai";
+const appName: string = import.meta.env.VITE_APP_NAME || 'Task Manager Mahasiswa'
+const appVersion: string = import.meta.env.VITE_APP_VERSION || '1.0.0'
 
-// Contoh tipe data dasar TypeScript
-const namaMahasiswa: string = "Suci Ramadhani";
-const semester: number = 5;
-const aplikasiAktif: boolean = true;
+document.title = `${appName} - v${appVersion}`
 
-// Contoh generic
-function getElement<T extends HTMLElement>(id: string): T {
-    const element = document.getElementById(id);
+const heading = document.querySelector<HTMLHeadingElement>('header h1')
+if (heading) heading.textContent = appName
 
-    if (!element) {
-        throw new Error(`Elemen ${id} tidak ditemukan`);
-    }
+const getElement = <T extends HTMLElement>(selector: string): T => {
+  const element = document.querySelector<T>(selector)
 
-    return element as T;
+  if (!element) {
+    throw new Error(`Elemen ${selector} tidak ditemukan`)
+  }
+
+  return element
 }
 
-const form = getElement<HTMLFormElement>("taskForm");
-const taskInput = getElement<HTMLInputElement>("taskInput");
-const deadlineInput = getElement<HTMLInputElement>("deadlineInput");
-const taskList = getElement<HTMLDivElement>("taskList");
+const taskForm = getElement<HTMLFormElement>('#taskForm')
+const taskInput = getElement<HTMLInputElement>('#taskInput')
+const deadlineInput = getElement<HTMLInputElement>('#deadlineInput')
+const taskList = getElement<HTMLUListElement>('#taskList')
+const emptyState = getElement<HTMLParagraphElement>('#emptyState')
 
-// Contoh array dengan tipe Task
-let tasks: Task[] = loadTasks();
+const totalCount = getElement<HTMLElement>('#totalCount')
+const pendingCount = getElement<HTMLElement>('#pendingCount')
+const doneCount = getElement<HTMLElement>('#doneCount')
+const taskTotalLabel = getElement<HTMLElement>('#taskTotalLabel')
+const formMessage = getElement<HTMLElement>('#formMessage')
 
-// Mengambil data dari localStorage
+const STORAGE_KEY = 'task-manager-mahasiswa-tasks'
+
+let tasks: Task[] = loadTasks()
+
 function loadTasks(): Task[] {
-    try {
-        const savedTasks = localStorage.getItem("daftarTugas");
+  const saved = localStorage.getItem(STORAGE_KEY)
 
-        if (!savedTasks) return [];
+  if (!saved) return []
 
-        const parsed: unknown = JSON.parse(savedTasks);
+  try {
+    const parsed = JSON.parse(saved) as Task[]
 
-        if (!Array.isArray(parsed)) return [];
-
-        return parsed as Task[];
-    } catch {
-        return [];
-    }
+    // Menyesuaikan data tugas lama yang belum memiliki deadline.
+    return parsed.map(task => ({
+      ...task,
+      deadline: task.deadline || ''
+    }))
+  } catch {
+    return []
+  }
 }
 
-// Menyimpan data ke localStorage
 function saveTasks(): void {
-    localStorage.setItem("daftarTugas", JSON.stringify(tasks));
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks))
 }
 
-function getStatus(completed: boolean): TaskStatus {
-    return completed ? "Selesai" : "Belum Selesai";
+function formatDeadline(deadline: string): string {
+  if (!deadline) return 'Belum diatur'
+
+  const date = new Date(deadline)
+
+  return new Intl.DateTimeFormat('id-ID', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit'
+  }).format(date)
 }
 
-// Menampilkan tugas
 function renderTasks(): void {
-    taskList.replaceChildren();
+  taskList.innerHTML = ''
 
-    if (tasks.length === 0) {
-        const emptyMessage = document.createElement("p");
-        emptyMessage.textContent =
-            "Belum ada tugas. Yuk, tambahkan tugasmu!";
-        taskList.appendChild(emptyMessage);
-        return;
-    }
+  emptyState.hidden = tasks.length > 0
 
-    tasks.forEach((task) => {
-        const card = document.createElement("article");
-        card.className = "task-card";
+  totalCount.textContent = String(tasks.length)
 
-        const title = document.createElement("h3");
-        title.textContent = task.title;
+  pendingCount.textContent = String(
+    tasks.filter(task => task.status === 'Belum Selesai').length
+  )
 
-        const deadline = document.createElement("p");
-        deadline.textContent = `Deadline: ${task.deadline}`;
+  doneCount.textContent = String(
+    tasks.filter(task => task.status === 'Selesai').length
+  )
 
-        const status = document.createElement("p");
-        status.textContent = `Status: ${getStatus(task.completed)}`;
+  taskTotalLabel.textContent = `${tasks.length} tugas`
 
-        const completeButton = document.createElement("button");
-        completeButton.textContent = task.completed
-            ? "Batalkan Selesai"
-            : "Tandai Selesai";
-        completeButton.dataset.action = "complete";
-        completeButton.dataset.id = String(task.id);
+  tasks.forEach(task => {
+    const item = document.createElement('li')
 
-        const editButton = document.createElement("button");
-        editButton.textContent = "Edit";
-        editButton.dataset.action = "edit";
-        editButton.dataset.id = String(task.id);
+    item.className = `task-item ${
+      task.status === 'Selesai' ? 'is-done' : ''
+    }`
 
-        const deleteButton = document.createElement("button");
-        deleteButton.textContent = "Hapus";
-        deleteButton.dataset.action = "delete";
-        deleteButton.dataset.id = String(task.id);
+    const info = document.createElement('div')
+    info.className = 'task-info'
 
-        card.append(
-            title,
-            deadline,
-            status,
-            completeButton,
-            editButton,
-            deleteButton
-        );
+    const title = document.createElement('strong')
+    title.textContent = task.title
 
-        taskList.appendChild(card);
-    });
+    const deadline = document.createElement('span')
+    deadline.className = 'deadline-text'
+    deadline.textContent = `📅 Deadline: ${formatDeadline(task.deadline)}`
+
+    const status = document.createElement('span')
+    status.className = 'status'
+    status.textContent = task.status
+
+    info.append(title, deadline, status)
+
+    const actions = document.createElement('div')
+    actions.className = 'task-actions'
+
+    const toggleButton = document.createElement('button')
+    toggleButton.className = 'small-button'
+    toggleButton.textContent =
+      task.status === 'Selesai' ? 'Batalkan' : 'Selesaikan'
+
+    toggleButton.addEventListener('click', () => {
+      task.status =
+        task.status === 'Selesai' ? 'Belum Selesai' : 'Selesai'
+
+      saveTasks()
+      renderTasks()
+    })
+
+    const editButton = document.createElement('button')
+    editButton.className = 'small-button'
+    editButton.textContent = 'Edit'
+
+    editButton.addEventListener('click', () => {
+      const updatedTitle = window.prompt(
+        'Ubah nama tugas:',
+        task.title
+      )
+
+      if (updatedTitle === null) return
+
+      if (!updatedTitle.trim()) {
+        window.alert('Nama tugas tidak boleh kosong.')
+        return
+      }
+
+      const updatedDeadline = window.prompt(
+        'Ubah deadline (format: YYYY-MM-DDTHH:mm):',
+        task.deadline
+      )
+
+      if (updatedDeadline === null) return
+
+      if (!updatedDeadline.trim() || Number.isNaN(new Date(updatedDeadline).getTime())) {
+        window.alert('Format deadline tidak valid.')
+        return
+      }
+
+      task.title = updatedTitle.trim()
+      task.deadline = updatedDeadline
+
+      saveTasks()
+      renderTasks()
+    })
+
+    const deleteButton = document.createElement('button')
+    deleteButton.className = 'small-button delete-button'
+    deleteButton.textContent = 'Hapus'
+
+    deleteButton.addEventListener('click', () => {
+      if (!window.confirm(`Hapus tugas "${task.title}"?`)) return
+
+      tasks = tasks.filter(current => current.id !== task.id)
+
+      saveTasks()
+      renderTasks()
+    })
+
+    actions.append(toggleButton, editButton, deleteButton)
+
+    item.append(info, actions)
+
+    taskList.append(item)
+  })
 }
 
-// Menambahkan tugas baru
-form.addEventListener("submit", (event) => {
-    event.preventDefault();
+taskForm.addEventListener('submit', event => {
+  event.preventDefault()
 
-    const title = taskInput.value.trim();
-    const deadline = deadlineInput.value;
+  const title = taskInput.value.trim()
+  const deadline = deadlineInput.value
 
-    if (!title || !deadline) {
-        alert("Nama tugas dan deadline harus diisi!");
-        return;
-    }
+  if (!title || !deadline) {
+    formMessage.textContent = 'Nama tugas dan deadline harus diisi.'
+    return
+  }
 
-    tasks.push({
-        id: Date.now(),
-        title: title,
-        deadline: deadline,
-        completed: false
-    });
+  const newTask: Task = {
+    id: Date.now(),
+    title,
+    status: 'Belum Selesai',
+    deadline,
+    createdAt: new Date().toISOString()
+  }
 
-    saveTasks();
-    form.reset();
-    renderTasks();
-});
+  tasks.unshift(newTask)
 
-// Mengedit, menghapus, dan mengubah status
-taskList.addEventListener("click", (event) => {
-    const target = event.target as HTMLElement;
-    const button = target.closest<HTMLButtonElement>(
-        "button[data-action]"
-    );
+  saveTasks()
+  renderTasks()
 
-    if (!button) return;
+  taskInput.value = ''
+  deadlineInput.value = ''
 
-    const id = Number(button.dataset.id);
-    const index = tasks.findIndex((task) => task.id === id);
+  formMessage.textContent = 'Tugas berhasil ditambahkan!'
 
-    if (index === -1) return;
+  taskInput.focus()
+})
 
-    const action = button.dataset.action;
-
-    if (action === "complete") {
-        tasks[index].completed = !tasks[index].completed;
-    }
-
-    if (action === "edit") {
-        const newTitle = prompt(
-            "Masukkan nama tugas baru:",
-            tasks[index].title
-        );
-
-        if (newTitle !== null && newTitle.trim() !== "") {
-            tasks[index].title = newTitle.trim();
-        }
-    }
-
-    if (action === "delete") {
-        const confirmation = confirm(
-            "Yakin ingin menghapus tugas ini?"
-        );
-
-        if (confirmation) {
-            tasks.splice(index, 1);
-        }
-    }
-
-    saveTasks();
-    renderTasks();
-});
-
-// Menampilkan data ketika aplikasi dibuka
-renderTasks();
-
-console.log("Nama:", namaMahasiswa);
-console.log("Semester:", semester);
-console.log("Aplikasi aktif:", aplikasiAktif);
+renderTasks()

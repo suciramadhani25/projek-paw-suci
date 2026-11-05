@@ -1,97 +1,434 @@
+
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Profil Diri - Suci Ramadhani Siregar</title>
+    <title>Profil Diri - Suci Ramadhani</title>
+    <meta name="description" content="Personal portfolio Suci Ramadhani, mahasiswa Informatika.">
 
-    <meta name="description"
-          content="Halaman profil diri Suci Ramadhani, mahasiswa Program Studi Informatika.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
 
-    <meta property="og:title" content="Profil Diri - Suci Ramadhani">
-    <meta property="og:description"
-          content="Halaman profil diri Suci Ramadhani yang berisi biodata, pendidikan, mata kuliah, dan kontak.">
-    <meta property="og:image" content="foto.jpg">
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f8f3eb;
+            color: #493528;
+            line-height: 1.7;
+        }
+
+        header {
+            background: #fffaf3;
+            padding: 18px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            box-shadow: 0 3px 15px #49352812;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+            color: #704c38;
+        }
+
+        nav {
+            display: flex;
+            gap: 22px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #624735;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        nav a:hover {
+            color: #b18455;
+        }
+
+        .hero {
+            min-height: 560px;
+            padding: 75px 10%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 50px;
+            background: linear-gradient(120deg, #f2e5d4, #fffaf3);
+        }
+
+        .hero-text {
+            max-width: 570px;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #e7d4bd;
+            color: #704c38;
+            padding: 7px 17px;
+            border-radius: 30px;
+            font-size: 13px;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(38px, 5vw, 58px);
+            line-height: 1.2;
+            margin-bottom: 18px;
+            color: #493528;
+        }
+
+        .hero h1 span {
+            color: #a4774d;
+        }
+
+        .hero p {
+            color: #776352;
+            margin-bottom: 25px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 13px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 22px;
+            border-radius: 9px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: .3s;
+        }
+
+        .btn-primary {
+            background: #79563e;
+            color: white;
+        }
+
+        .btn-secondary {
+            border: 1px solid #79563e;
+            color: #79563e;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .hero-image {
+            width: 300px;
+            height: 390px;
+            object-fit: cover;
+            object-position: center;
+            border-radius: 150px 150px 25px 25px;
+            border: 8px solid #fffaf3;
+            box-shadow: 0 15px 35px #49352825;
+        }
+
+        section {
+            padding: 75px 10%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 38px;
+        }
+
+        .section-title small {
+            color: #a4774d;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .section-title h2 {
+            font-size: 32px;
+            color: #493528;
+            margin-top: 5px;
+        }
+
+        .about {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .card {
+            background: #fffdf9;
+            padding: 28px;
+            border-radius: 16px;
+            box-shadow: 0 5px 20px #4935280c;
+            border: 1px solid #eee3d6;
+        }
+
+        .card h3 {
+            margin-bottom: 13px;
+            color: #79563e;
+        }
+
+        .biodata {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .bio-item {
+            background: #fffdf9;
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid #b18455;
+        }
+
+        .bio-item small {
+            color: #9a806b;
+        }
+
+        .bio-item p {
+            font-weight: 600;
+        }
+
+        .education {
+            background: #efe3d5;
+        }
+
+        .education-card {
+            max-width: 750px;
+            margin: auto;
+            background: #fffaf3;
+            padding: 30px;
+            border-radius: 16px;
+            border-left: 5px solid #a4774d;
+        }
+
+        .table-wrap {
+            overflow-x: auto;
+            background: #fffdf9;
+            border-radius: 14px;
+            padding: 15px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 450px;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #eee3d6;
+        }
+
+        th {
+            background: #79563e;
+            color: white;
+        }
+
+        tr:hover td {
+            background: #f8f0e6;
+        }
+
+        .contact {
+            text-align: center;
+            background: #efe3d5;
+        }
+
+        .contact p {
+            margin: 10px 0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            background: #493528;
+            color: #fffaf3;
+            font-size: 14px;
+        }
+
+        @media (max-width: 700px) {
+            header {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            nav {
+                justify-content: center;
+                gap: 13px;
+            }
+
+            .hero {
+                flex-direction: column-reverse;
+                text-align: center;
+                padding: 50px 7%;
+            }
+
+            .hero-image {
+                width: 230px;
+                height: 300px;
+            }
+
+            .buttons {
+                justify-content: center;
+            }
+
+            .about, .biodata {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 55px 7%;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-    <header>
-        <h1>Profil Diri</h1>
-        <p>Selamat datang di halaman profil saya.</p>
+<header>
+    <div class="logo">Suci.</div>
 
-        <nav aria-label="Navigasi utama">
-            <a href="#profil">Profil</a> |
-            <a href="#biodata">Biodata</a> |
-            <a href="#pendidikan">Pendidikan</a> |
-            <a href="#matakuliah">Mata Kuliah</a> |
-            <a href="#kontak">Kontak</a>
-        </nav>
-    </header>
+    <nav>
+        <a href="#profil">Beranda</a>
+        <a href="#tentang">Tentang</a>
+        <a href="#biodata">Biodata</a>
+        <a href="#pendidikan">Pendidikan</a>
+        <a href="#matakuliah">Mata Kuliah</a>
+        <a href="#kontak">Kontak</a>
+    </nav>
+</header>
 
-    <main>
+<main>
 
-        <section id="profil">
-            <h2>Tentang Saya</h2>
+    <section class="hero" id="profil">
+        <div class="hero-text">
+            <span class="tag">MAHASISWA INFORMATIKA</span>
 
-            <img
-                src="image/poto suci.jpg"
-                alt="Foto profil Suci Ramadhani"
-                width="200"
-            >
-
-            <h3>Perkenalan</h3>
+            <h1>Halo, saya <span>Suci Ramadhani.</span></h1>
 
             <p>
-                Halo, saya Suci Ramadhani. Saya adalah mahasiswa Program Studi
-                Informatika yang memiliki ketertarikan pada dunia teknologi,
+                Selamat datang di personal portfolio saya.
+                Saya memiliki ketertarikan pada dunia teknologi,
                 pemrograman, dan pengembangan sistem informasi.
+                Saat ini saya sedang menempuh pendidikan semester 5
+                di Program Studi Informatika.
             </p>
 
-            <p>
-                Saat ini saya sedang menjalani perkuliahan semester 5 dan terus
-                belajar untuk mengembangkan kemampuan di bidang teknologi
-                informasi serta pengembangan perangkat lunak.
-            </p>
-        </section>
+            <div class="buttons">
+                <a href="#tentang" class="btn btn-primary">
+                    Kenali Saya
+                </a>
 
-        <section id="biodata">
-            <h2>Biodata</h2>
+                <a href="index.html" class="btn btn-secondary">
+                    Lihat Task Manager
+                </a>
+            </div>
+        </div>
 
-            <h3>Data Diri</h3>
+        <img
+            src="image/poto suci.jpg"
+            alt="Foto profil Suci Ramadhani"
+            class="hero-image"
+        >
+    </section>
 
-            <p><strong>Nama:</strong> Suci Ramadhani</p>
-            <p><strong>Program Studi:</strong> Informatika</p>
-            <p><strong>Semester:</strong> 5</p>
-            <p><strong>Universitas:</strong> UIN Sunan Gunung Djati Bandung</p>
-        </section>
+    <section id="tentang">
+        <div class="section-title">
+            <small>INTRODUCTION</small>
+            <h2>Tentang Saya</h2>
+        </div>
 
-        <section id="pendidikan">
+        <div class="about">
+            <div class="card">
+                <h3>Perkenalan</h3>
+                <p>
+                    Halo, saya Suci Ramadhani. Saya adalah mahasiswa
+                    Program Studi Informatika yang tertarik mempelajari
+                    teknologi, pemrograman, dan pengembangan sistem informasi.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Tujuan Saya</h3>
+                <p>
+                    Saya terus belajar untuk mengembangkan kemampuan
+                    di bidang teknologi informasi serta pengembangan
+                    perangkat lunak. Saya ingin menghasilkan karya
+                    digital yang bermanfaat.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="biodata">
+        <div class="section-title">
+            <small>PERSONAL INFORMATION</small>
+            <h2>Biodata Diri</h2>
+        </div>
+
+        <div class="biodata">
+            <div class="bio-item">
+                <small>Nama Lengkap</small>
+                <p>Suci Ramadhani</p>
+            </div>
+
+            <div class="bio-item">
+                <small>Program Studi</small>
+                <p>Informatika</p>
+            </div>
+
+            <div class="bio-item">
+                <small>Semester</small>
+                <p>5</p>
+            </div>
+
+            <div class="bio-item">
+                <small>Universitas</small>
+                <p>UIN Sunan Gunung Djati Bandung</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="education" id="pendidikan">
+        <div class="section-title">
+            <small>MY EDUCATION</small>
             <h2>Pendidikan</h2>
+        </div>
 
-            <h3>Pendidikan Saat Ini</h3>
-
+        <div class="education-card">
+            <h3>UIN Sunan Gunung Djati Bandung</h3>
+            <p><strong>Program Studi:</strong> Informatika</p>
+            <p><strong>Status:</strong> Mahasiswa Semester 5</p>
             <p>
-                Saya sedang menempuh pendidikan tinggi pada Program Studi
-                Informatika di UIN Sunan Gunung Djati Bandung. Selama
-                perkuliahan, saya mempelajari berbagai materi yang berkaitan
-                dengan pemrograman, jaringan komputer, sistem informasi,
-                machine learning, interaksi manusia dan komputer, dan
-                pengembangan perangkat lunak.
+                Selama perkuliahan, saya mempelajari pemrograman,
+                jaringan komputer, sistem informasi, machine learning,
+                interaksi manusia dan komputer, serta pengembangan
+                perangkat lunak.
             </p>
-        </section>
+        </div>
+    </section>
 
-        <section id="matakuliah">
-            <h2>Mata Kuliah Semester Ini</h2>
+    <section id="matakuliah">
+        <div class="section-title">
+            <small>ACADEMIC</small>
+            <h2>Mata Kuliah Semester 5</h2>
+        </div>
 
-            <h3>Daftar Mata Kuliah</h3>
-
-            <table border="1">
+        <div class="table-wrap">
+            <table>
                 <thead>
                     <tr>
-                        <th>No</th>
+                        <th>No.</th>
                         <th>Mata Kuliah</th>
                         <th>Semester</th>
                     </tr>
@@ -99,48 +436,56 @@
 
                 <tbody>
                     <tr>
-                        <td>1</td>
+                        <td>01</td>
                         <td>Interaksi Manusia Komputer</td>
                         <td>5</td>
                     </tr>
                     <tr>
-                        <td>2</td>
-                        <td>pengembangan aplikasi web</td>
+                        <td>02</td>
+                        <td>Pengembangan Aplikasi Web</td>
                         <td>5</td>
                     </tr>
                     <tr>
-                        <td>3</td>
+                        <td>03</td>
                         <td>Jaringan Komputer</td>
                         <td>5</td>
                     </tr>
                     <tr>
-                        <td>4</td>
+                        <td>04</td>
                         <td>Rekayasa Perangkat Lunak</td>
                         <td>5</td>
                     </tr>
                 </tbody>
             </table>
-        </section>
+        </div>
+    </section>
 
-        <section id="kontak">
-            <h2>081234567789</h2>
+    <section class="contact" id="kontak">
+        <div class="section-title">
+            <small>GET IN TOUCH</small>
+            <h2>Kontak Saya</h2>
+        </div>
 
-            <h3>Media Online</h3>
+        <p>Telepon: 081234567789</p>
 
-            <p>
-                Kamu dapat mengunjungi
-                <a href="https://github.com/" target="_blank" rel="noopener">
-                    GitHub
-                </a>
-                untuk melihat berbagai proyek dan informasi terkait teknologi.
-            </p>
-        </section>
+        <p>
+            GitHub:
+            <a href="https://github.com/" target="_blank" rel="noopener">
+                Kunjungi GitHub
+            </a>
+        </p>
 
-    </main>
+        <p>
+            Terima kasih sudah mengunjungi personal portfolio saya!
+        </p>
+    </section>
 
-    <footer>
-        <p>&copy; 2026 Suci Ramadhani. Dibuat menggunakan HTML5.</p>
-    </footer>
+</main>
+
+<footer>
+    <p>© 2026 Suci Ramadhani | Personal Portfolio</p>
+    <p>Dibuat dengan HTML5 dan CSS3</p>
+</footer>
 
 </body>
 </html>

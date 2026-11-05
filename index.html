@@ -1,55 +1,89 @@
-<!DOCTYPE html>
+
+<!doctype html>
 <html lang="id">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Task Manager Mahasiswa</title>
-
-    <meta name="description"
-        content="Aplikasi pengelolaan tugas kuliah mahasiswa.">
-
-    <link rel="stylesheet" href="/src/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Task Manager Mahasiswa" />
+  <title>Task Manager Mahasiswa</title>
 </head>
-
 <body>
-
-    <header>
+  <div class="page">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">PENGELOLA TUGAS KULIAH</p>
         <h1>Task Manager Mahasiswa</h1>
-        <p>Catat, kelola, dan pantau semua tugas kuliahmu dalam satu aplikasi.</p>
-        <a href="/profil.html">Lihat Profil Saya</a>
+        <p class="subtitle">Catat tugas, atur deadline, dan pantau progresnya.</p>
+      </div>
+      <a class="profile-link" href="/profil.html">Profil Website ↗</a>
     </header>
 
     <main>
-        <section>
-            <h2>Tambah Tugas Kuliah</h2>
+      <section class="stats">
+        <article class="stat-card">
+          <span>Total tugas</span>
+          <strong id="totalCount">0</strong>
+        </article>
+        <article class="stat-card">
+          <span>Belum selesai</span>
+          <strong id="pendingCount">0</strong>
+        </article>
+        <article class="stat-card">
+          <span>Selesai</span>
+          <strong id="doneCount">0</strong>
+        </article>
+      </section>
 
-            <form id="taskForm">
-                <input
-                    type="text"
-                    id="taskInput"
-                    placeholder="Masukkan nama tugas..."
-                    required
-                >
+      <section class="panel">
+        <p class="eyebrow">TAMBAHKAN KEGIATAN</p>
+        <h2>Daftar Tugas</h2>
 
-                <input
-                    type="date"
-                    id="deadlineInput"
-                    required
-                >
+        <form id="taskForm" class="task-form">
+          <label for="taskInput">Nama tugas</label>
+          <input
+            id="taskInput"
+            type="text"
+            placeholder="Contoh: Tugas Pemrograman Web"
+            maxlength="100"
+            required
+          />
 
-                <button type="submit">Tambah Tugas</button>
-            </form>
-        </section>
+          <label for="deadlineInput">Tanggal dan jam deadline</label>
+          <input
+            id="deadlineInput"
+            type="datetime-local"
+            required
+          />
 
-        <section>
-            <h2>Daftar Tugas</h2>
-            <div id="taskList"></div>
-        </section>
+          <button class="primary-button" type="submit">
+            + Tambah Tugas
+          </button>
+
+          <p id="formMessage" class="form-message"></p>
+        </form>
+
+        <div class="list-heading">
+          <h3>Tugas saya</h3>
+          <span id="taskTotalLabel">0 tugas</span>
+        </div>
+
+        <ul id="taskList" class="task-list"></ul>
+
+        <p id="emptyState" class="empty-state">
+          Belum ada tugas. Tambahkan tugas pertamamu!
+        </p>
+      </section>
+
+      <p class="footnote">
+        Data tersimpan otomatis menggunakan Local Storage.
+      </p>
     </main>
 
-    <script type="module" src="/src/main.ts"></script>
+    <footer>
+      © 2026 Task Manager Mahasiswa
+    </footer>
+  </div>
 
+  <script type="module" src="/src/main.ts"></script>
 </body>
 </html>

@@ -1,163 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap');
+:root{font-family:'DM Sans',sans-serif;color:#33271f;background:#f7f2eb}*{box-sizing:border-box}body{margin:0;min-width:320px}.page{width:min(100% - 36px,920px);margin:auto;padding:48px 0 24px}.topbar{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;margin-bottom:30px}.eyebrow{color:#9a6a46;font-size:11px;font-weight:700;letter-spacing:.16em;margin:0 0 9px}h1,h2,h3{font-family:Manrope,sans-serif}h1{font-size:clamp(27px,5vw,40px);line-height:1.15;margin:0}.subtitle{color:#84766c;margin:10px 0 0;line-height:1.6}.profile-link{color:#74472d;font-weight:700;text-decoration:none;border:1px solid #e4d7c9;border-radius:12px;padding:11px 14px;white-space:nowrap;background:#fffdf9}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:20px}.stat-card,.panel{background:#fffdf9;border:1px solid #eee4d9;border-radius:18px;box-shadow:0 8px 24px #47301e0a}.stat-card{padding:18px 20px}.stat-card span{display:block;color:#89796d;font-size:13px}.stat-card strong{display:block;font:800 28px Manrope,sans-serif;margin-top:5px;color:#70462e}.panel{padding:clamp(20px,4vw,32px)}h2{margin:0;font-size:25px}.task-form{margin-top:24px}.task-form label{display:block;font-size:13px;font-weight:700;margin-bottom:8px}.form-row{display:flex;gap:10px}input{min-width:0;flex:1;border:1px solid #e5d9ce;background:white;padding:13px 14px;border-radius:11px;font:inherit;outline:none}input:focus{border-color:#a97851;box-shadow:0 0 0 3px #a978511c}button{cursor:pointer;font:inherit}.primary-button{border:0;border-radius:11px;padding:0 18px;background:#754b32;color:white;font-weight:700}.primary-button:hover{background:#5d3925}.form-message{min-height:18px;color:#7b654f;font-size:12px;margin:7px 0 0}.list-heading{display:flex;justify-content:space-between;align-items:center;margin-top:20px;border-top:1px solid #eee5dc;padding-top:20px}.list-heading h3{margin:0;font-size:16px}.list-heading span{color:#9b8a7d;font-size:12px}.task-list{display:grid;gap:10px;padding:0;margin:14px 0 0;list-style:none}.task-item{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px;border:1px solid #eee5dc;border-radius:13px;background:white}.task-info{display:grid;gap:5px;min-width:0}.task-info strong{overflow-wrap:anywhere}.status{width:fit-content;color:#95683f;background:#f7eee4;border-radius:20px;padding:3px 9px;font-size:11px}.is-done .task-info strong{text-decoration:line-through;color:#998e85}.is-done .status{color:#477451;background:#eaf3e9}.task-actions{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}.small-button{border:1px solid #e8ddd2;border-radius:8px;padding:7px 9px;color:#68452f;background:#fffdf9;font-size:12px}.delete-button{color:#a4473d}.empty-state{color:#998a7d;text-align:center;padding:26px 10px;font-size:14px}.footnote,footer{color:#998b80;text-align:center;font-size:12px}.footnote{margin:18px 0 32px}footer{padding:20px 0}.documentation{line-height:1.75}.documentation h3{margin:24px 0 5px;color:#70462e}.documentation p{color:#6f6258}@media(max-width:620px){.page{padding-top:30px}.topbar{flex-direction:column}.stats{gap:8px}.stat-card{padding:13px}.stat-card strong{font-size:23px}.form-row{flex-direction:column}.primary-button{padding:13px}.task-item{align-items:flex-start;flex-direction:column}.task-actions{justify-content:flex-start}}
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+
+/* Form deadline */
+.task-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
-body {
-    font-family: Arial, sans-serif;
-    background: #f3f5fa;
-    color: #263247;
-    line-height: 1.6;
+.task-form input[type="text"],
+.task-form input[type="datetime-local"] {
+  width: 100%;
+  min-height: 46px;
 }
 
-/* Header */
-header {
-    background: linear-gradient(135deg, #263b59, #49678c);
-    color: white;
-    text-align: center;
-    padding: 45px 20px;
+.task-form .primary-button {
+  min-height: 46px;
 }
 
-header h1 {
-    font-size: 32px;
-    margin-bottom: 8px;
+.deadline-text {
+  color: #8b684e;
+  font-size: 12px;
+  margin-top: 3px;
+  line-height: 1.5;
 }
 
-header p {
-    margin-bottom: 15px;
-    color: #e4eaf2;
-}
-
-header a {
-    display: inline-block;
-    color: white;
-    text-decoration: none;
-    border: 1px solid white;
-    padding: 8px 18px;
-    border-radius: 8px;
-    transition: 0.2s;
-}
-
-header a:hover {
-    background: white;
-    color: #263b59;
-}
-
-/* Konten utama */
-main {
-    width: 90%;
-    max-width: 850px;
-    margin: 35px auto;
-}
-
-/* Kartu */
-section {
-    background: white;
-    padding: 28px;
-    margin-bottom: 25px;
-    border-radius: 14px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-}
-
-section h2 {
-    font-size: 22px;
-    margin-bottom: 20px;
-    color: #263b59;
-}
-
-/* Form */
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-}
-
-input {
-    width: 100%;
-    padding: 13px 15px;
-    border: 1px solid #dce2eb;
-    border-radius: 8px;
-    font-size: 15px;
-    outline: none;
-}
-
-input:focus {
-    border-color: #49678c;
-    box-shadow: 0 0 0 3px rgba(73, 103, 140, 0.12);
-}
-
-/* Tombol */
-button {
-    padding: 11px 16px;
-    border: none;
-    border-radius: 8px;
-    background: #344f73;
-    color: white;
-    cursor: pointer;
-    font-size: 14px;
-    margin: 4px 4px 4px 0;
-    transition: 0.2s;
-}
-
-button:hover {
-    background: #203752;
-    transform: translateY(-1px);
-}
-
-/* Kartu tugas */
-.task-card {
-    padding: 18px;
-    margin-bottom: 15px;
-    border: 1px solid #e2e7ef;
-    border-left: 5px solid #49678c;
-    border-radius: 10px;
-    background: #fbfcfe;
-}
-
-.task-card h3 {
-    color: #263b59;
-    margin-bottom: 7px;
-}
-
-.task-card p {
-    color: #667085;
-    font-size: 14px;
-}
-
-.task-card button[data-action="complete"] {
-    background: #25845c;
-}
-
-.task-card button[data-action="edit"] {
-    background: #d18a2e;
-}
-
-.task-card button[data-action="delete"] {
-    background: #c84c4c;
-}
-
-.task-card button:hover {
-    opacity: 0.85;
-}
-
-/* Tampilan HP */
-@media (max-width: 600px) {
-    header h1 {
-        font-size: 25px;
-    }
-
-    main {
-        width: 94%;
-        margin: 20px auto;
-    }
-
-    section {
-        padding: 20px;
-    }
-
-    .task-card button {
-        margin-top: 8px;
-    }
-}
