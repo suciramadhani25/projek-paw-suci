@@ -127,10 +127,10 @@
             display: inline-block;
             padding: 12px 22px;
             border-radius: 9px;
-            text-decoration: none;
-            font-weight: 600;
             background: #a4774d;
             color: white;
+            text-decoration: none;
+            font-weight: 600;
             transition: .3s;
         }
 
@@ -253,47 +253,63 @@
 
         /* PROJECT SAYA */
         .projects {
-            background: #f8f3eb;
+            background: #fffaf3;
+        }
+
+        .project-list {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 25px;
+            max-width: 950px;
+            margin: auto;
         }
 
         .project-card {
-            max-width: 750px;
-            margin: auto;
-            padding: 30px;
             background: #fffdf9;
-            border: 1px solid #eee3d6;
+            padding: 30px;
             border-radius: 16px;
+            border: 1px solid #eee3d6;
             box-shadow: 0 5px 20px #4935280c;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            transition: .3s;
         }
 
-        .project-card h3 {
-            color: #79563e;
-            font-size: 23px;
-            margin-bottom: 12px;
-        }
-
-        .project-card p {
-            color: #776352;
-            margin-bottom: 20px;
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px #49352818;
         }
 
         .project-label {
             display: inline-block;
-            background: #efe3d5;
+            background: #e7d4bd;
             color: #79563e;
-            padding: 5px 13px;
+            padding: 5px 14px;
             border-radius: 20px;
             font-size: 12px;
             font-weight: bold;
             margin-bottom: 15px;
         }
 
+        .project-card h3 {
+            color: #79563e;
+            font-size: 22px;
+            margin-bottom: 12px;
+        }
+
+        .project-card p {
+            color: #776352;
+            margin-bottom: 22px;
+            flex-grow: 1;
+        }
+
         .project-button {
             display: inline-block;
-            padding: 12px 22px;
+            padding: 11px 20px;
             background: #79563e;
             color: white;
-            border-radius: 9px;
+            border-radius: 8px;
             text-decoration: none;
             font-weight: 600;
             transition: .3s;
@@ -301,7 +317,7 @@
 
         .project-button:hover {
             background: #a4774d;
-            transform: translateY(-3px);
+            transform: translateY(-2px);
         }
 
         .contact {
@@ -348,7 +364,8 @@
             }
 
             .about,
-            .biodata {
+            .biodata,
+            .project-list {
                 grid-template-columns: 1fr;
             }
 
@@ -370,7 +387,7 @@
         <a href="#biodata">Biodata</a>
         <a href="#pendidikan">Pendidikan</a>
         <a href="#matakuliah">Mata Kuliah</a>
-        <a href="#project">Project</a>
+        <a href="#projects">Project</a>
         <a href="#kontak">Kontak</a>
     </nav>
 </header>
@@ -532,35 +549,51 @@
     </section>
 
     <!-- PROJECT SAYA -->
-    <section class="projects" id="project">
+    <section class="projects" id="projects">
         <div class="section-title">
-            <small>MY PROJECTS</small>
+            <small>MY WORK</small>
             <h2>Project Saya</h2>
         </div>
 
-        <div class="project-card">
-            <span class="project-label">REACT WEB APPLICATION</span>
+        <div class="project-list">
 
-            <h3>Sora Stationery</h3>
+            <div class="project-card">
+                <span class="project-label">PROJECT 01</span>
 
-            <p>
-                Sora Stationery merupakan aplikasi katalog alat tulis
-                berbasis React yang dibuat untuk menampilkan berbagai
-                produk perlengkapan belajar secara interaktif.
+                <h3>Task Manager</h3>
 
-                Aplikasi ini dilengkapi fitur pencarian produk,
-                filter kategori, daftar favorit, detail produk,
-                serta pengurutan produk berdasarkan harga.
-            </p>
+                <p>
+                    Aplikasi pengelolaan tugas kuliah yang membantu
+                    pengguna menambahkan, mengedit, menghapus,
+                    dan mengatur status penyelesaian tugas.
+                </p>
 
-            <a
-                href="https://sora-stationery.vercel.app/"
-                class="project-button"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-                Kunjungi Sora Stationery ↗
-            </a>
+                <a href="index.html" class="project-button">
+                    Lihat Task Manager ↗
+                </a>
+            </div>
+
+            <div class="project-card">
+                <span class="project-label">PROJECT 02</span>
+
+                <h3>Sora Stationery</h3>
+
+                <p>
+                    Aplikasi katalog produk alat tulis yang memiliki
+                    fitur pencarian, filter kategori, favorit,
+                    detail produk, dan pengurutan harga.
+                </p>
+
+                <a
+                    href="https://sora-stationery.vercel.app/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="project-button"
+                >
+                    Lihat Sora Stationery ↗
+                </a>
+            </div>
+
         </div>
     </section>
 
