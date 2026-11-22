@@ -123,7 +123,19 @@
             color: #79563e;
         }
 
-        .btn:hover {
+        .btn-profile {
+            display: inline-block;
+            padding: 12px 22px;
+            border-radius: 9px;
+            text-decoration: none;
+            font-weight: 600;
+            background: #a4774d;
+            color: white;
+            transition: .3s;
+        }
+
+        .btn:hover,
+        .btn-profile:hover {
             transform: translateY(-3px);
         }
 
@@ -239,6 +251,59 @@
             background: #f8f0e6;
         }
 
+        /* PROJECT SAYA */
+        .projects {
+            background: #f8f3eb;
+        }
+
+        .project-card {
+            max-width: 750px;
+            margin: auto;
+            padding: 30px;
+            background: #fffdf9;
+            border: 1px solid #eee3d6;
+            border-radius: 16px;
+            box-shadow: 0 5px 20px #4935280c;
+        }
+
+        .project-card h3 {
+            color: #79563e;
+            font-size: 23px;
+            margin-bottom: 12px;
+        }
+
+        .project-card p {
+            color: #776352;
+            margin-bottom: 20px;
+        }
+
+        .project-label {
+            display: inline-block;
+            background: #efe3d5;
+            color: #79563e;
+            padding: 5px 13px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .project-button {
+            display: inline-block;
+            padding: 12px 22px;
+            background: #79563e;
+            color: white;
+            border-radius: 9px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: .3s;
+        }
+
+        .project-button:hover {
+            background: #a4774d;
+            transform: translateY(-3px);
+        }
+
         .contact {
             text-align: center;
             background: #efe3d5;
@@ -282,7 +347,8 @@
                 justify-content: center;
             }
 
-            .about, .biodata {
+            .about,
+            .biodata {
                 grid-template-columns: 1fr;
             }
 
@@ -304,6 +370,7 @@
         <a href="#biodata">Biodata</a>
         <a href="#pendidikan">Pendidikan</a>
         <a href="#matakuliah">Mata Kuliah</a>
+        <a href="#project">Project</a>
         <a href="#kontak">Kontak</a>
     </nav>
 </header>
@@ -332,9 +399,10 @@
                 <a href="index.html" class="btn btn-secondary">
                     Lihat Task Manager
                 </a>
+
                 <a href="dokumentasi.html" class="btn-profile">
-    Dokumentasi Teknologi ↗
-</a>
+                    Dokumentasi Teknologi ↗
+                </a>
             </div>
         </div>
 
@@ -463,6 +531,39 @@
         </div>
     </section>
 
+    <!-- PROJECT SAYA -->
+    <section class="projects" id="project">
+        <div class="section-title">
+            <small>MY PROJECTS</small>
+            <h2>Project Saya</h2>
+        </div>
+
+        <div class="project-card">
+            <span class="project-label">REACT WEB APPLICATION</span>
+
+            <h3>Sora Stationery</h3>
+
+            <p>
+                Sora Stationery merupakan aplikasi katalog alat tulis
+                berbasis React yang dibuat untuk menampilkan berbagai
+                produk perlengkapan belajar secara interaktif.
+
+                Aplikasi ini dilengkapi fitur pencarian produk,
+                filter kategori, daftar favorit, detail produk,
+                serta pengurutan produk berdasarkan harga.
+            </p>
+
+            <a
+                href="https://sora-stationery.vercel.app/"
+                class="project-button"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                Kunjungi Sora Stationery ↗
+            </a>
+        </div>
+    </section>
+
     <section class="contact" id="kontak">
         <div class="section-title">
             <small>GET IN TOUCH</small>
@@ -492,4 +593,3 @@
 
 </body>
 </html>
-git status
